@@ -46,6 +46,6 @@
         /// </summary>
         /// <param name="externalTaskId">The ID of the external task to finish.</param>
         /// <param name="payload">The payload containing the process variables to update.</param>
-        Task FinishTask<TPayload>(string externalTaskId, TPayload payload);
+        Task FinishExternalTask<TPayload>(string externalTaskId, TPayload payload);
     }
 }
