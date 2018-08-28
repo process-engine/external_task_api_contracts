@@ -5,8 +5,14 @@
     /// </summary>
     public class ExternalTask<TPayload>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="payload">The payload for the external tasks.</param>
         public ExternalTask(TPayload payload)
-        {             Payload = payload;         }
+        {
+            Payload = payload;
+        }
 
         /// <summary>
         /// The process variables and token data to use and process by the external task
