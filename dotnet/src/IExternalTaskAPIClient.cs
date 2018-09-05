@@ -1,0 +1,51 @@
+﻿namespace ProcessEngine.ExternalTaskAPI.Contracts
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// Client for accessing the <see cref="IExternalTaskAPIService">ExternalTaskAPIService</see>.
+    /// </summary>
+    public interface IExternalTaskAPIClient
+    {
+        /// <summary>
+        /// Fetches the tasks available for the external service and locks them for a defined time.
+        /// </summary>
+        /// <returns>A list of external tasks.</returns>
+        /// <param name="maxTasks">The maximum number of tasks to return.</param>
+        /// <param name="longPollingTimeout">The Long Polling timeout in milliseconds. Note: The value cannot be set larger than 1.800.000 milliseconds(corresponds to 30 minutes).</param>
+        /// <param name="topic">Tasks are fetched by the name of the <see cref="IExternalTaskTopic">topic</see> and locked by the time defined in the topic.</param>
+        /// <param name="externalTasksFound">Callback if external tasks are available.</param>
+        Task FetchAndLockExternalTasks<TPayload>(int maxTasks, int longPollingTimeout, IExternalTaskTopic topic, Action<IEnumerable<ExternalTask<TPayload>>> externalTasksFound);
+
+        /// <summary>
+        /// Extends the timeout of a lock by a given amount of time.
+        /// </summary>
+        /// <param name="externalTaskId">The ID of the external task.</param>
+        /// <param name="additionalDuration">An amount of time (in milliseconds). This is the new lock duration starting from the current moment.</param>
+        Task ExtendLock(string externalTaskId, int additionalDuration);
+
+        /// <summary>
+        /// Reports a business error in the context of a running external task by ID. The error code must be specified to identify the BPMN error handler.
+        /// </summary>
+        /// <param name="externalTaskId">The ID of the external task in which context a BPMN error is reported.</param>
+        /// <param name="errorCode">An error code that indicates the predefined error. Is used to identify the BPMN error handler.</param>
+        Task HandleBpmnError(string externalTaskId, string errorCode);
+
+        /// <summary>
+        /// Reports a failure to execute an external task by ID. A number of retries and a timeout until the task can be retried can be specified. If retries are set to 0, an incident for this task is created.
+        /// </summary>
+        /// <param name="externalTaskId">The ID of the external task to report a failure for.</param>
+        /// <param name="errorMessage">A message indicating the reason of the failure.</param>
+        /// <param name="errorDetails">A detailed error description.</param>
+        Task HandleServiceError(string externalTaskId, string errorMessage, string errorDetails);
+
+        /// <summary>
+        /// Completes an external task by ID and updates process variables.
+        /// </summary>
+        /// <param name="externalTaskId">The ID of the external task to finish.</param>
+        /// <param name="payload">The payload containing the process variables to update.</param>
+        Task FinishExternalTask<TPayload>(string externalTaskId, TPayload payload);
+    }
+}
