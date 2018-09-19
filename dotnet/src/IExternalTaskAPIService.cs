@@ -15,11 +15,12 @@
         /// </summary>
         /// <returns>A list of external tasks.</returns>
         /// <param name="workerId">The ID of the worker on which behalf tasks are fetched. The returned tasks are locked for that worker and can only be completed when providing the same worker id.</param>
+        /// <param name="topicName">The name of the topic. This topic is used to get the tasks for an external worker from the BPMN.</param>
         /// <param name="maxTasks">The maximum number of tasks to return.</param>
         /// <param name="longPollingTimeout">The Long Polling timeout in milliseconds. Note: The value cannot be set larger than 1.800.000 milliseconds(corresponds to 30 minutes).</param>
-        /// <param name="topic">Tasks are fetched by the name of the <see cref="IExternalTaskTopic">topic</see> and locked by the time defined in the topic.</param>
+        /// <param name="lockDuration">The duration of the lock. The task will be locked for the calling worker by this duration and cannot be fetched by other workers until the lock has expired.</param>
         /// <typeparam name="TPayload">An object with public fields used as payload for external tasks. All public fields are converted into process variables using the name and value of the field.</typeparam>
-        Task<IEnumerable<ExternalTask<TPayload>>> FetchAndLockExternalTasks<TPayload>(string workerId, int maxTasks, int longPollingTimeout, IExternalTaskTopic topic)
+        Task<IEnumerable<ExternalTask<TPayload>>> FetchAndLockExternalTasks<TPayload>(string workerId, string topicName, int maxTasks, int longPollingTimeout, int lockDuration)
             where TPayload : new();
 
         /// <summary>
