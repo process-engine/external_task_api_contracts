@@ -1,5 +1,4 @@
 import { ExternalTask } from './data_models/external_task';
-import { Topic } from './data_models/topic';
 
 /**
  * Service for process engine external task execution. External tasks are tasks in a process flow that are executed by an external service.
@@ -13,14 +12,16 @@ export interface IExternalTaskApiService {
    *
    * @param workerId           The ID of the worker on which behalf tasks are fetched.
    *                           The returned tasks are locked for that worker and can only be completed when providing the same worker id.
+   * @param topicName          The name of the topic. This topic is used to get the tasks for an external worker from the BPMN.
    * @param maxTasks           The maximum number of tasks to return.
    * @param longPollingTimeout The Long Polling timeout in milliseconds.
-   * @param topic              Tasks are fetched by the name of the topic and locked by the time defined in the topic.
+   * @param lockDuration       The duration of the lock. The task will be locked for the calling worker by this duration and cannot be fetched by other workers until the lock has expired.
    */
   fetchAndLockExternalTasks<TPayload>(workerId: string,
+                                      topicName: string,
                                       maxTasks: number,
                                       longPollingTimeout: number,
-                                      topic: Topic): Promise<Array<ExternalTask<TPayload>>>;
+                                      lockDuration: number): Promise<Array<ExternalTask<TPayload>>>;
 
   /**
    *
