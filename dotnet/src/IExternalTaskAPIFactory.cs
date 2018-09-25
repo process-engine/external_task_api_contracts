@@ -7,10 +7,10 @@
     {
     
         /// <summary>
-        /// Factory method for creating an ExternalTaskAPIService.
+        /// Factory method for creating an ExternalTaskAPI service.
         /// </summary>
         /// <returns>The ExternalTaskAPIService.</returns>
         /// <param name="processEngineAddress">The address of the process engine. This address is specific to the used process engine.</param>
-        IExternalTaskAPIService CreateExternalTaskAPIService(string processEngineAddress);
+        IExternalTaskAPI CreateExternalTaskAPIService(string processEngineAddress);
     }
 }
