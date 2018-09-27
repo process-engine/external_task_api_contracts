@@ -7,7 +7,7 @@ const queryParams = {
 };
 
 const paths = {
-  fetchAndLockExternalTasks: `/external_tasks`,
+  fetchAndLockExternalTasks: `/external_tasks/fetchAndLock`,
   extendLock: `/external_tasks/${params.externalTaskId}/extendlock`,
   handleBpmnError: `/external_tasks/${params.externalTaskId}/handle_bpmn_error`,
   handleServiceError: `/external_tasks/${params.externalTaskId}/handle_service_error`,
