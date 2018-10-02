@@ -6,7 +6,7 @@
     <RootNamespace>ProcessEngine.ExternalTaskAPI.Contracts</RootNamespace>
     <AssemblyName>ProcessEngine.ExternalTaskAPI.Contracts</AssemblyName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Thomas Konrad;</Authors>
+    <Authors>Thomas Konrad;Christian Werner</Authors>
     <Company>5Minds IT-Solutions GmbH &amp; Co. KG</Company>
     <Description />
     <Copyright>Copyright © 5Minds IT-Solutions GmbH &amp; Co. KG 2018</Copyright>
@@ -17,5 +17,9 @@
     <PackageLicenseUrl />
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Foundation.IAM.Contracts" Version="1.2.0" />
+  </ItemGroup>
 
 </Project>

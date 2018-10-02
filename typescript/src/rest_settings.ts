@@ -1,13 +1,10 @@
 // tslint:disable:typedef
 const params = {
-  externalTaskId: ':external_task_id'
-};
-
-const queryParams = {
+  externalTaskId: ':external_task_id',
 };
 
 const paths = {
-  fetchAndLockExternalTasks: `/external_tasks`,
+  fetchAndLockExternalTasks: `/external_tasks/fetchAndLock`,
   extendLock: `/external_tasks/${params.externalTaskId}/extendlock`,
   handleBpmnError: `/external_tasks/${params.externalTaskId}/handle_bpmn_error`,
   handleServiceError: `/external_tasks/${params.externalTaskId}/handle_service_error`,
@@ -22,10 +19,6 @@ export const restSettings = {
    * A collection of all url parameters employed by the external task api.
    */
   params: params,
-  /**
-   * A collection of all query parameters employed by the external task api.
-   */
-  queryParams: queryParams,
   /**
    * A collection of all urls employed by the external task api.
    */
