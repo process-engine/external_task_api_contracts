@@ -29,12 +29,12 @@ export interface IExternalTaskApi {
    *                           for the calling worker by this duration and cannot be
    *                           fetched by other workers until the lock has expired.
    */
-  fetchAndLockExternalTasks<TPayload>(identity: IIdentity,
-                                      workerId: string,
-                                      topicName: string,
-                                      maxTasks: number,
-                                      longPollingTimeout: number,
-                                      lockDuration: number): Promise<Array<ExternalTask<TPayload>>>;
+  fetchAndLockExternalTasks(identity: IIdentity,
+                            workerId: string,
+                            topicName: string,
+                            maxTasks: number,
+                            longPollingTimeout: number,
+                            lockDuration: number): Promise<Array<ExternalTask>>;
 
   /**
    *
@@ -94,5 +94,5 @@ export interface IExternalTaskApi {
    * @param externalTaskId The ID of the ExternalTask to finish.
    * @param payload        The payload containing the process variables to update.
    */
-  finishExternalTask<TPayload>(identity: IIdentity, workerId: string, externalTaskId: string, payload: TPayload): Promise<void>;
+  finishExternalTask(identity: IIdentity, workerId: string, externalTaskId: string, payload: any): Promise<void>;
 }

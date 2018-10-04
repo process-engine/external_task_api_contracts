@@ -1,11 +1,11 @@
 /**
  * An external task the engine is providing for external services to process.
  */
-export class ExternalTask<TPayload> {
+export class ExternalTask {
   /**
    * The process variables and token data to use and process by the external task.
    */
-  public payload: TPayload;
+  public payload: any;
   /**
    * The Id of the external task.
    */
