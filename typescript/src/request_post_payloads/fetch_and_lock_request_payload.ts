@@ -3,22 +3,16 @@
  */
 export class FetchAndLockRequestPayload {
 
-  private readonly _workerId: string;
   private readonly _topicName: string;
   private readonly _maxTasks: number;
   private readonly _longPollingTimeout: number;
   private readonly _lockDuration: number;
 
-  constructor(workerId: string, topicName: string, maxTasks: number, longPollingTimeout: number, lockDuration: number) {
-    this._workerId = workerId;
+  constructor(topicName: string, maxTasks: number, longPollingTimeout: number, lockDuration: number) {
     this._topicName = topicName;
     this._maxTasks = maxTasks;
     this._longPollingTimeout = longPollingTimeout;
     this._lockDuration = lockDuration;
-  }
-
-  public get workerId(): string {
-    return this._workerId;
   }
 
   public get topicName(): string {
