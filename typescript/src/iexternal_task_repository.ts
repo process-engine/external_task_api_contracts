@@ -61,9 +61,8 @@ export interface IExternalTaskRepository {
 
   /**
    *
-   * Reports a business error in the context of a running ExternalTask
-   * with a specific ID.
-   * The error code must be specified to identify the BPMN error handler.
+   * Marks the given ExternalTask as finished, using the given error object
+   * as a failure result.
    *
    * @async
    * @param workerId       The ID of the worker that reports the failure.
@@ -71,33 +70,14 @@ export interface IExternalTaskRepository {
    *                       locked the task.
    * @param externalTaskId The ID of the ExternalTask, in whose context a BPMN
    *                       error has occured.
-   * @param errorCode      An error code that indicates the predefined error.
-   *                       This is used to identify the BPMN error handler.
+   * @param error          The error that occured.
    * @throws               404, if the ExternalTask was not found.
    */
-  handleBpmnError(workerId: string, externalTaskId: string, errorCode: string): Promise<void>;
+  finishWithError(workerId: string, externalTaskId: string, error: Error): Promise<void>;
 
   /**
-   *
-   * Reports a failure to execute an ExternalTask with a specific ID.
-   * A number of retries and a timout, after which task execution is finally
-   * aborted, can be specified.
-   * If retries are set to 0, an incident for this task is created.
-   *
-   * @async
-   * @param workerId       The ID of the worker that reports the failure.
-   *                       Must match the ID of the worker that has most
-   *                       recently locked the task.
-   * @param externalTaskId The ID of the ExternalTask to report a failure for.
-   * @param errorMessage   A message indicating the reason for the failure.
-   * @param errorDetails   A detailed error description.
-   * @throws               404, if the ExternalTask was not found.
-   */
-  handleServiceError(workerId: string, externalTaskId: string, errorMessage: string, errorDetails: string): Promise<void>;
-
-  /**
-   *
-   * Completes an ExternalTask by ID and updates any related process variables.
+   * Marks the given ExternalTask as finished, using the given object
+   * as a success result.
    *
    * @async
    * @param  workerId       The ID of the worker that completes the task.
@@ -107,5 +87,5 @@ export interface IExternalTaskRepository {
    * @param  result         The result of the ExternalTasks execution.
    * @throws                404, if the ExternalTask was not found.
    */
-  finishExternalTask(workerId: string, externalTaskId: string, result: any): Promise<any>;
+  finishWithSuccess(workerId: string, externalTaskId: string, result: any): Promise<any>;
 }
