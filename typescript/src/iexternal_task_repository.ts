@@ -22,44 +22,42 @@ export interface IExternalTaskRepository {
   create(topic: string, correlationId: string, processInstanceId: string, flowNodeInstanceId: string, payload: any): Promise<void>;
 
   /**
+   * Gets an ExternalTask by its ID.
+   *
+   * @async
+   * @param   externalTaskId The ID of the ExternalTask to get.
+   * @returns                The retrieved ExternalTask.
+   * @throws                 404, if the ExternalTask was not found.
+   */
+  getById(externalTaskId: string): Promise<ExternalTask>;
+
+  /**
+   *
+   * Fetches all tasks with a matching topic that are currently available
+   * for processing.
+   *
+   * @async
+   * @param   topicName The name of the topic. This topic is used to get
+   *                    the tasks for an external worker from the BPMN.
+   * @param   maxTasks  The maximum number of tasks to return.
+   * @returns           A list of fetched and locked ExternalTasks.
+   */
+  fetchAvailableForProcessing(topicName: string, maxTasks: number): Promise<Array<ExternalTask>>;
+
+  /**
    *
    * Fetches the tasks available for a particular (external) service and locks
    * them for a defined time.
    *
    * @async
-   * @param   workerId           The ID of the worker on whose behalf tasks are
-   *                             fetched.
-   *                             The returned tasks are locked for that worker
-   *                             and can only be completed when providing the
-   *                             same worker id.
-   * @param   topicName          The name of the topic. This topic is used to get
-   *                             the tasks for an external worker from the BPMN.
-   * @param   maxTasks           The maximum number of tasks to return.
-   * @param   lockDuration       The amount of time in ms until the fetched tasks
-   *                             will be locked and inaccessible to other workers.
+   * @param   workerId           The ID of the worker on whose behalf the
+   *                             ExternalTask is locked.
+   * @param   externalTaskId     The ID of the ExternalTask to lock.
+   * @param   lockExpirationTime The time at which the lock will be released.
    * @returns                    A list of fetched and locked ExternalTasks.
-   * @throws                     403, if the requesting User is forbidden to
-   *                             access ExternalTasks.
+   * @throws                     404, if the ExternalTask was not found.
    */
-  fetchAndLockExternalTasks(workerId: string,
-                            topicName: string,
-                            maxTasks: number,
-                            lockDuration: number): Promise<Array<ExternalTask>>;
-
-  /**
-   *
-   * Extends the timeout of a lock by a given amount of time.
-   *
-   * @async
-   * @param workerId           The ID of a worker who is locking the ExternalTask.
-   * @param externalTaskId     The ID of the ExternalTask.
-   * @param additionalDuration The additional amount of time by which to extend
-   *                           the lock, based on the current datetime.
-   * @throws                   403, if the requesting User is forbidden to access
-   *                           the ExternalTask.
-   * @throws                   404, if the ExternalTask was not found.
-   */
-  extendLock(workerId: string, externalTaskId: string, additionalDuration: number): Promise<void>;
+  lockForWorker(workerId: string, externalTaskId: string, lockExpirationTime: number): Promise<void>;
 
   /**
    *
@@ -75,8 +73,6 @@ export interface IExternalTaskRepository {
    *                       error has occured.
    * @param errorCode      An error code that indicates the predefined error.
    *                       This is used to identify the BPMN error handler.
-   * @throws               403, if the requesting User is forbidden to access
-   *                       the ExternalTask.
    * @throws               404, if the ExternalTask was not found.
    */
   handleBpmnError(workerId: string, externalTaskId: string, errorCode: string): Promise<void>;
@@ -95,8 +91,6 @@ export interface IExternalTaskRepository {
    * @param externalTaskId The ID of the ExternalTask to report a failure for.
    * @param errorMessage   A message indicating the reason for the failure.
    * @param errorDetails   A detailed error description.
-   * @throws               403, if the requesting User is forbidden to access
-   *                       the ExternalTask.
    * @throws               404, if the ExternalTask was not found.
    */
   handleServiceError(workerId: string, externalTaskId: string, errorMessage: string, errorDetails: string): Promise<void>;
@@ -111,8 +105,6 @@ export interface IExternalTaskRepository {
    *                        recently locked the task.
    * @param  externalTaskId The ID of the ExternalTask to finish.
    * @param  result         The result of the ExternalTasks execution.
-   * @throws                403, if the requesting User is forbidden to access
-   *                        the ExternalTask.
    * @throws                404, if the ExternalTask was not found.
    */
   finishExternalTask(workerId: string, externalTaskId: string, result: any): Promise<any>;
