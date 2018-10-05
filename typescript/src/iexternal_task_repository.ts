@@ -35,7 +35,6 @@ export interface IExternalTaskRepository {
    * @param   topicName          The name of the topic. This topic is used to get
    *                             the tasks for an external worker from the BPMN.
    * @param   maxTasks           The maximum number of tasks to return.
-   * @param   longPollingTimeout The Long Polling timeout in milliseconds.
    * @param   lockDuration       The amount of time in ms until the fetched tasks
    *                             will be locked and inaccessible to other workers.
    * @returns                    A list of fetched and locked ExternalTasks.
@@ -45,7 +44,6 @@ export interface IExternalTaskRepository {
   fetchAndLockExternalTasks(workerId: string,
                             topicName: string,
                             maxTasks: number,
-                            longPollingTimeout: number,
                             lockDuration: number): Promise<Array<ExternalTask>>;
 
   /**
