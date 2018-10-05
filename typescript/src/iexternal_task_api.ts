@@ -102,14 +102,15 @@ export interface IExternalTaskApi {
    * Completes an ExternalTask by ID and updates any related process variables.
    *
    * @async
-   * @param   identity       The requesting users identity.
-   * @param   workerId       The ID of the worker that completes the task.
-   *                         Must match the ID of the worker who has most
-   *                         recently locked the task.
-   * @param   externalTaskId The ID of the ExternalTask to finish.
-   * @throws                 403, if the requesting User is forbidden to access
-   *                         the ExternalTask.
-   * @throws                 404, if the ExternalTask was not found.
+   * @param  identity       The requesting users identity.
+   * @param  workerId       The ID of the worker that completes the task.
+   *                        Must match the ID of the worker who has most
+   *                        recently locked the task.
+   * @param  externalTaskId The ID of the ExternalTask to finish.
+   * @param  result         The result of the ExternalTasks execution.
+   * @throws                403, if the requesting User is forbidden to access
+   *                        the ExternalTask.
+   * @throws                404, if the ExternalTask was not found.
    */
-  finishExternalTask(identity: IIdentity, workerId: string, externalTaskId: string): Promise<any>;
+  finishExternalTask(identity: IIdentity, workerId: string, externalTaskId: string, result: any): Promise<any>;
 }
