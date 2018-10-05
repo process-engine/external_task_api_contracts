@@ -57,7 +57,7 @@ export interface IExternalTaskRepository {
    * @returns                    A list of fetched and locked ExternalTasks.
    * @throws                     404, if the ExternalTask was not found.
    */
-  lockForWorker(workerId: string, externalTaskId: string, lockExpirationTime: number): Promise<void>;
+  lockForWorker(workerId: string, externalTaskId: string, lockExpirationTime: Date): Promise<void>;
 
   /**
    *
