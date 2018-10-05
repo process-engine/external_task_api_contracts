@@ -1,10 +1,12 @@
 import * as moment from 'moment';
 
+import {IExternalTask} from './iexternal_task';
+
 /**
  * Describes an ExternalTask that the ProcessEngine has delegated to an
  * ExternalTask worker for processing.
  */
-export class ExternalTask {
+export class ExternalTask implements IExternalTask {
 
   private readonly _id: string;
   private readonly _workerId: string;
@@ -12,8 +14,13 @@ export class ExternalTask {
   private readonly _flowNodeInstanceId: string;
   private readonly _correlationId: string;
   private readonly _processInstanceId: string;
-  private readonly _lockExpirationTime?: Date;
   private readonly _payload: any;
+  private readonly _lockExpirationTime: Date;
+  private readonly _finished: boolean;
+  private readonly _finishedAt: Date;
+  private readonly _result: any;
+  private readonly _error: any;
+  private readonly _createdAt: Date;
 
   constructor(id: string,
               workerId: string,
@@ -22,7 +29,12 @@ export class ExternalTask {
               correlationId: string,
               processInstanceId: string,
               payload: any,
-              lockExpirationTime?: Date) {
+              lockExpirationTime: Date,
+              finished: boolean,
+              finishedAt?: Date,
+              error?: Error,
+              result?: any,
+              createdAt?: Date) {
     this._id = id;
     this._workerId = workerId;
     this._topic = topic;
@@ -31,6 +43,11 @@ export class ExternalTask {
     this._processInstanceId = processInstanceId;
     this._payload = payload;
     this._lockExpirationTime = lockExpirationTime;
+    this._finished = finished;
+    this._finishedAt = finishedAt;
+    this._result = result;
+    this._error = error;
+    this._createdAt = createdAt;
   }
 
   /**
@@ -94,6 +111,42 @@ export class ExternalTask {
    */
   public get payload(): any {
     return this._payload;
+  }
+
+  /**
+   * Determines if the ExternalTask as already been finished.
+   */
+  public get isFinished(): boolean {
+    return this._finished;
+  }
+
+  /**
+   * The date and time at which the ExternalTask was finished.
+   * Only set, if 'isFinished' is 'true'.
+   */
+  public get finishedAt(): Date {
+    return this._finishedAt;
+  }
+
+  /**
+   * If the ExternalTask was finished successfully, this will contain the result.
+   */
+  public get result(): boolean {
+    return this._result;
+  }
+
+  /**
+   * If the ExternalTask was finished with an error, this will contain the error.
+   */
+  public get error(): any {
+    return this._error;
+  }
+
+  /**
+   * The date and time at which the ExternalTask was created.
+   */
+  public get createdAt(): Date {
+    return this._createdAt;
   }
 
   /**
