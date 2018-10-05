@@ -6,12 +6,20 @@ import {ExternalTask} from './data_models/external_task';
 export interface IExternalTaskRepository {
 
   /**
-   * Persists the given ExternalTask in the database.
+   * Creates a new ExternalTask in the database.
    *
    * @async
-   * @param externalTask The external task to persist.
+   * @param topic              The ExternalTasks topic.
+   * @param correlationId      The ID of the Correlation that contains the
+   *                           FlowNodeInstance with the ExternalTasks definition.
+   * @param processInstanceId  The ID of the ProcessInstance that contains the
+   *                           FlowNodeInstance with the ExternalTasks definition.
+   * @param flowNodeInstanceId The ID of the FlowNodeInstance that contains the
+   *                           ExternalTasks definition.
+   * @param payload            Contains data that the ExternalTaskAPI will need
+   *                           for processing the ExternalTask.
    */
-  create(externalTask: ExternalTask): Promise<void>;
+  create(topic: string, correlationId: string, processInstanceId: string, flowNodeInstanceId: string, payload: any): Promise<void>;
 
   /**
    *
@@ -48,14 +56,13 @@ export interface IExternalTaskRepository {
 
   /**
    *
-   * Completes an ExternalTask by ID and updates any related process variables.
+   * Marks and ExternalTask as finished.
    *
    * @async
    * @param workerId       The ID of the worker that completes the task.
    *                       Must match the ID of the worker who has most recently
    *                       locked the task.
    * @param externalTaskId The ID of the ExternalTask to finish.
-   * @param payload        The payload containing the process variables to update.
    */
-  finishExternalTask(workerId: string, externalTaskId: string, payload: any): Promise<void>;
+  finishExternalTask(workerId: string, externalTaskId: string): Promise<void>;
 }

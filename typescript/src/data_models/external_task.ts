@@ -21,16 +21,16 @@ export class ExternalTask {
               flowNodeInstanceId: string,
               correlationId: string,
               processInstanceId: string,
-              lockExpirationTime: Date,
-              payload: any) {
-  this._id = id;
-  this._workerId = workerId;
-  this._topic = topic;
-  this._flowNodeInstanceId = flowNodeInstanceId;
-  this._correlationId = correlationId;
-  this._processInstanceId = processInstanceId;
-  this._lockExpirationTime = lockExpirationTime;
-  this._payload = payload;
+              payload: any,
+              lockExpirationTime?: Date) {
+    this._id = id;
+    this._workerId = workerId;
+    this._topic = topic;
+    this._flowNodeInstanceId = flowNodeInstanceId;
+    this._correlationId = correlationId;
+    this._processInstanceId = processInstanceId;
+    this._payload = payload;
+    this._lockExpirationTime = lockExpirationTime;
   }
 
   /**

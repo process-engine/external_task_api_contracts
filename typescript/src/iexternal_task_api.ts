@@ -107,10 +107,9 @@ export interface IExternalTaskApi {
    *                         Must match the ID of the worker who has most
    *                         recently locked the task.
    * @param   externalTaskId The ID of the ExternalTask to finish.
-   * @param   result         The ExternalTask's result.
    * @throws                 403, if the requesting User is forbidden to access
    *                         the ExternalTask.
    * @throws                 404, if the ExternalTask was not found.
    */
-  finishExternalTask(identity: IIdentity, workerId: string, externalTaskId: string, result: any): Promise<any>;
+  finishExternalTask(identity: IIdentity, workerId: string, externalTaskId: string): Promise<any>;
 }
