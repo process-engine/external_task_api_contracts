@@ -12,5 +12,5 @@ export interface IExternalTask {
   finishedAt?: Date;
   result?: any;
   error?: any;
-  createdAt: Date;
+  createdAt?: Date;
 }
