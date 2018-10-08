@@ -65,27 +65,21 @@ export interface IExternalTaskRepository {
    * as a failure result.
    *
    * @async
-   * @param workerId       The ID of the worker that reports the failure.
-   *                       Must match the ID of the worker who has most recently
-   *                       locked the task.
    * @param externalTaskId The ID of the ExternalTask, in whose context a BPMN
    *                       error has occured.
    * @param error          The error that occured.
    * @throws               404, if the ExternalTask was not found.
    */
-  finishWithError(workerId: string, externalTaskId: string, error: Error): Promise<void>;
+  finishWithError(externalTaskId: string, error: Error): Promise<void>;
 
   /**
    * Marks the given ExternalTask as finished, using the given object
    * as a success result.
    *
    * @async
-   * @param  workerId       The ID of the worker that completes the task.
-   *                        Must match the ID of the worker who has most
-   *                        recently locked the task.
    * @param  externalTaskId The ID of the ExternalTask to finish.
    * @param  result         The result of the ExternalTasks execution.
    * @throws                404, if the ExternalTask was not found.
    */
-  finishWithSuccess(workerId: string, externalTaskId: string, result: any): Promise<any>;
+  finishWithSuccess(externalTaskId: string, result: any): Promise<any>;
 }
