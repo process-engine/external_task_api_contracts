@@ -3,13 +3,9 @@
  */
 export class ExtendLockRequestPayload {
 
-  private readonly _additionalDuration: number;
+  public readonly additionalDuration: number;
 
   constructor(additionalDuration: number) {
-   this._additionalDuration = additionalDuration;
-  }
-
-  public get additionalDuration(): number {
-    return this._additionalDuration;
+   this.additionalDuration = additionalDuration;
   }
 }

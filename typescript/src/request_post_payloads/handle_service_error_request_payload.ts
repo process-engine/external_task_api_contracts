@@ -3,19 +3,11 @@
  */
 export class HandleServiceErrorRequestPayload {
 
-  private readonly _errorDetails: string;
-  private readonly _errorMessage: string;
+  public readonly errorDetails: string;
+  public readonly errorMessage: string;
 
   constructor(errorMessage: string, errorDetails: string) {
-   this._errorMessage = errorMessage;
-   this._errorDetails = errorDetails;
-  }
-
-  public get errorDetails(): string {
-    return this._errorDetails;
-  }
-
-  public get errorMessage(): string {
-    return this._errorMessage;
+   this.errorMessage = errorMessage;
+   this.errorDetails = errorDetails;
   }
 }

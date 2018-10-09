@@ -1,12 +1,12 @@
 // tslint:disable:typedef
 const params = {
   externalTaskId: ':external_task_id',
-  workerId: ':external_task_id',
+  workerId: ':worker_id',
 };
 
 const paths = {
-  fetchAndLockExternalTasks: `/worker/${params.workerId}/fetchAndLock`,
-  extendLock: `/worker/${params.workerId}/task/${params.externalTaskId}/extendlock`,
+  fetchAndLockExternalTasks: `/worker/${params.workerId}/fetch_and_lock`,
+  extendLock: `/worker/${params.workerId}/task/${params.externalTaskId}/extend_lock`,
   handleBpmnError: `/worker/${params.workerId}/task/${params.externalTaskId}/handle_bpmn_error`,
   handleServiceError: `/worker/${params.workerId}/task/${params.externalTaskId}/handle_service_error`,
   finishExternalTask: `/worker/${params.workerId}/task/${params.externalTaskId}/finish`,

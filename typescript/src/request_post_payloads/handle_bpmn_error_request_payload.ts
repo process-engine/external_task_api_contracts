@@ -3,13 +3,9 @@
  */
 export class HandleBpmnErrorRequestPayload {
 
-  private readonly _errorCode: string;
+  public readonly errorCode: string;
 
   constructor(errorCode: string) {
-   this._errorCode = errorCode;
-  }
-
-  public get errorCode(): string {
-    return this._errorCode;
+   this.errorCode = errorCode;
   }
 }

@@ -3,13 +3,9 @@
  */
 export class FinishExternalTaskRequestPayload {
 
-  private readonly _result: any;
+  public readonly result: any;
 
   constructor(result: any) {
-   this._result = result;
-  }
-
-  public get result(): any {
-    return this._result;
+   this.result = result;
   }
 }
