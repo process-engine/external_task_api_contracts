@@ -1,3 +1,5 @@
+import {ExternalTaskState} from './external_task_state';
+
 export interface IExternalTask {
   id: string;
   workerId?: string;
@@ -8,7 +10,7 @@ export interface IExternalTask {
   lockExpirationTime?: Date;
   isLocked?: boolean;
   payload: any;
-  isFinished: boolean;
+  state: ExternalTaskState;
   finishedAt?: Date;
   result?: any;
   error?: any;

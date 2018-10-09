@@ -1,5 +1,6 @@
 import * as moment from 'moment';
 
+import {ExternalTaskState} from './external_task_state';
 import {IExternalTask} from './iexternal_task';
 
 /**
@@ -29,7 +30,7 @@ export class ExternalTask implements IExternalTask {
    * If not set, the ExternalTask is not locked.
    */
   public lockExpirationTime: Date;
-  public isFinished: boolean;
+  public state: ExternalTaskState = ExternalTaskState.pending;
   public finishedAt?: Date;
   public result?: any;
   public error?: any;
