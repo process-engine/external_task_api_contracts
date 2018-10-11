@@ -8,7 +8,7 @@ export interface IExternalTask {
   correlationId: string;
   processInstanceId: string;
   lockExpirationTime?: Date;
-  isLocked?: boolean;
+  readonly isLocked?: boolean;
   payload: any;
   state: ExternalTaskState;
   finishedAt?: Date;
