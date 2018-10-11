@@ -3,9 +3,11 @@
  */
 export class ExtendLockRequestPayload {
 
+  public readonly workerId: string;
   public readonly additionalDuration: number;
 
-  constructor(additionalDuration: number) {
-   this.additionalDuration = additionalDuration;
+  constructor(workerId: string, additionalDuration: number) {
+    this.workerId = workerId;
+    this.additionalDuration = additionalDuration;
   }
 }

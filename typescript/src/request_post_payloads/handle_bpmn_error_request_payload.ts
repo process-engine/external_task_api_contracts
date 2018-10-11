@@ -3,9 +3,11 @@
  */
 export class HandleBpmnErrorRequestPayload {
 
+  public readonly workerId: string;
   public readonly errorCode: string;
 
-  constructor(errorCode: string) {
-   this.errorCode = errorCode;
+  constructor(workerId: string, errorCode: string) {
+    this.workerId = workerId;
+    this.errorCode = errorCode;
   }
 }

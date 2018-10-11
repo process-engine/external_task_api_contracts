@@ -1,7 +1,9 @@
-import {ExternalTask} from './data_models/external_task';
+import {ExternalTaskFromRepository} from './data_models/external_task_from_repository';
 
 /**
  * The repository used to store and retrieve ExternalTasks.
+ *
+ * NOTE: This will be moved to the RuntimeAPI contracts soon.
  */
 export interface IExternalTaskRepository {
 
@@ -19,7 +21,11 @@ export interface IExternalTaskRepository {
    * @param payload            Contains data that the ExternalTaskAPI will need
    *                           for processing the ExternalTask.
    */
-  create(topic: string, correlationId: string, processInstanceId: string, flowNodeInstanceId: string, payload: any): Promise<void>;
+  create<TPayloadType>(topic: string,
+                       correlationId: string,
+                       processInstanceId: string,
+                       flowNodeInstanceId: string,
+                       payload: TPayloadType): Promise<void>;
 
   /**
    * Gets an ExternalTask by its ID.
@@ -29,7 +35,7 @@ export interface IExternalTaskRepository {
    * @returns                The retrieved ExternalTask.
    * @throws                 404, if the ExternalTask was not found.
    */
-  getById(externalTaskId: string): Promise<ExternalTask>;
+  getById<TPayloadType>(externalTaskId: string): Promise<ExternalTaskFromRepository<TPayloadType>>;
 
   /**
    *
@@ -42,7 +48,7 @@ export interface IExternalTaskRepository {
    * @param   maxTasks  The maximum number of tasks to return.
    * @returns           A list of fetched and locked ExternalTasks.
    */
-  fetchAvailableForProcessing(topicName: string, maxTasks: number): Promise<Array<ExternalTask>>;
+  fetchAvailableForProcessing<TPayloadType>(topicName: string, maxTasks: number): Promise<Array<ExternalTaskFromRepository<TPayloadType>>>;
 
   /**
    *
@@ -81,5 +87,5 @@ export interface IExternalTaskRepository {
    * @param  result         The result of the ExternalTasks execution.
    * @throws                404, if the ExternalTask was not found.
    */
-  finishWithSuccess(externalTaskId: string, result: any): Promise<any>;
+  finishWithSuccess<TResultType>(externalTaskId: string, result: TResultType): Promise<any>;
 }

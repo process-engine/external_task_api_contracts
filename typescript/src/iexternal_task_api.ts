@@ -7,6 +7,8 @@ import {ExternalTask} from './data_models/external_task';
  * ExternalTasks are tasks which are executed by an external service.
  * In order to execute them, the service has to poll the tasks/jobs and report
  * the result back to the ProcessEngine.
+ *
+ * NOTE: This will be moved to the RuntimeAPI contracts soon.
  */
 export interface IExternalTaskApi {
 
@@ -32,12 +34,12 @@ export interface IExternalTaskApi {
    * @throws                     403, if the requesting User is forbidden to
    *                             access ExternalTasks.
    */
-  fetchAndLockExternalTasks(identity: IIdentity,
-                            workerId: string,
-                            topicName: string,
-                            maxTasks: number,
-                            longPollingTimeout: number,
-                            lockDuration: number): Promise<Array<ExternalTask>>;
+  fetchAndLockExternalTasks<TPayloadType>(identity: IIdentity,
+                                          workerId: string,
+                                          topicName: string,
+                                          maxTasks: number,
+                                          longPollingTimeout: number,
+                                          lockDuration: number): Promise<Array<ExternalTask<TPayloadType>>>;
 
   /**
    *
@@ -112,5 +114,5 @@ export interface IExternalTaskApi {
    *                        the ExternalTask.
    * @throws                404, if the ExternalTask was not found.
    */
-  finishExternalTask(identity: IIdentity, workerId: string, externalTaskId: string, result: any): Promise<any>;
+  finishExternalTask<TResultType>(identity: IIdentity, workerId: string, externalTaskId: string, result: TResultType): Promise<any>;
 }
