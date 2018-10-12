@@ -7,7 +7,7 @@ import {IExternalTask} from './iexternal_task';
  * Describes an ExternalTask that the ProcessEngine has delegated to an
  * ExternalTask worker for processing.
  */
-export class ExternalTask<TPayloadType> implements IExternalTask {
+export class ExternalTaskFromRepository<TPayloadType> implements IExternalTask {
 
   public id: string;
   /**

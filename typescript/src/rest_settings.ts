@@ -4,11 +4,11 @@ const params = {
 };
 
 const paths = {
-  fetchAndLockExternalTasks: `/external_tasks/fetchAndLock`,
-  extendLock: `/external_tasks/${params.externalTaskId}/extendlock`,
-  handleBpmnError: `/external_tasks/${params.externalTaskId}/handle_bpmn_error`,
-  handleServiceError: `/external_tasks/${params.externalTaskId}/handle_service_error`,
-  finishExternalTask: `/external_tasks/${params.externalTaskId}/finish`,
+  fetchAndLockExternalTasks: `/fetch_and_lock`,
+  extendLock: `/task/${params.externalTaskId}/extend_lock`,
+  handleBpmnError: `/task/${params.externalTaskId}/handle_bpmn_error`,
+  handleServiceError: `/task/${params.externalTaskId}/handle_service_error`,
+  finishExternalTask: `/task/${params.externalTaskId}/finish`,
 };
 
 /**
