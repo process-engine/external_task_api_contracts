@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>4.0.0</Version>
+    <RootNamespace>ProcessEngine.ExternalTaskAPI.Contracts</RootNamespace>
+    <AssemblyName>ProcessEngine.ExternalTaskAPI.Contracts</AssemblyName>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Thomas Konrad;Christian Werner</Authors>
+    <Company>5Minds IT-Solutions GmbH &amp; Co. KG</Company>
+    <Description />
+    <Copyright>Copyright © 5Minds IT-Solutions GmbH &amp; Co. KG 2018</Copyright>
+    <PackageProjectUrl>https://github.com/process-engine/external_task_api_contracts</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/process-engine/external_task_api_contracts</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>ExternalTaskAPI;5Minds</PackageTags>
+    <PackageLicenseUrl />
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Foundation.IAM.Contracts" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>
