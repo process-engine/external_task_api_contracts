@@ -1,4 +1,6 @@
-import {ExternalTaskFromRepository} from './data_models/external_task_from_repository';
+import {IIdentity} from '@essential-projects/iam_contracts';
+
+import {ExternalTask} from './data_models/external_task';
 
 /**
  * The repository used to store and retrieve ExternalTasks.
@@ -18,14 +20,16 @@ export interface IExternalTaskRepository {
    *                           FlowNodeInstance with the ExternalTasks definition.
    * @param flowNodeInstanceId The ID of the FlowNodeInstance that contains the
    *                           ExternalTasks definition.
+   * @param identity           The Identity of the lane where ExternalTask is in.
    * @param payload            Contains data that the ExternalTaskAPI will need
    *                           for processing the ExternalTask.
    */
   create<TPayloadType>(topic: string,
-                       correlationId: string,
-                       processInstanceId: string,
-                       flowNodeInstanceId: string,
-                       payload: TPayloadType): Promise<void>;
+    correlationId: string,
+    processInstanceId: string,
+    flowNodeInstanceId: string,
+    identity: IIdentity,
+    payload: TPayloadType): Promise<void>;
 
   /**
    * Gets an ExternalTask by its ID.
@@ -35,7 +39,7 @@ export interface IExternalTaskRepository {
    * @returns                The retrieved ExternalTask.
    * @throws                 404, if the ExternalTask was not found.
    */
-  getById<TPayloadType>(externalTaskId: string): Promise<ExternalTaskFromRepository<TPayloadType>>;
+  getById<TPayloadType>(externalTaskId: string): Promise<ExternalTask<TPayloadType>>;
 
   /**
    *
@@ -48,7 +52,7 @@ export interface IExternalTaskRepository {
    * @param   maxTasks  The maximum number of tasks to return.
    * @returns           A list of fetched and locked ExternalTasks.
    */
-  fetchAvailableForProcessing<TPayloadType>(topicName: string, maxTasks: number): Promise<Array<ExternalTaskFromRepository<TPayloadType>>>;
+  fetchAvailableForProcessing<TPayloadType>(topicName: string, maxTasks: number): Promise<Array<ExternalTask<TPayloadType>>>;
 
   /**
    *
