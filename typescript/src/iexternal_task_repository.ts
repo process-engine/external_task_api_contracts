@@ -1,6 +1,6 @@
 import {IIdentity} from '@essential-projects/iam_contracts';
 
-import {ExternalTaskFromRepository} from './data_models/external_task_from_repository';
+import {ExternalTask} from './data_models/external_task';
 
 /**
  * The repository used to store and retrieve ExternalTasks.
@@ -39,7 +39,7 @@ export interface IExternalTaskRepository {
    * @returns                The retrieved ExternalTask.
    * @throws                 404, if the ExternalTask was not found.
    */
-  getById<TPayloadType>(externalTaskId: string): Promise<ExternalTaskFromRepository<TPayloadType>>;
+  getById<TPayloadType>(externalTaskId: string): Promise<ExternalTask<TPayloadType>>;
 
   /**
    *
@@ -52,7 +52,7 @@ export interface IExternalTaskRepository {
    * @param   maxTasks  The maximum number of tasks to return.
    * @returns           A list of fetched and locked ExternalTasks.
    */
-  fetchAvailableForProcessing<TPayloadType>(topicName: string, maxTasks: number): Promise<Array<ExternalTaskFromRepository<TPayloadType>>>;
+  fetchAvailableForProcessing<TPayloadType>(topicName: string, maxTasks: number): Promise<Array<ExternalTask<TPayloadType>>>;
 
   /**
    *

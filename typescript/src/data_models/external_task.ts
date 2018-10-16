@@ -3,13 +3,12 @@ import * as moment from 'moment';
 import {IIdentity} from '@essential-projects/iam_contracts';
 
 import {ExternalTaskState} from './external_task_state';
-import {IExternalTask} from './iexternal_task';
 
 /**
  * Describes an ExternalTask that the ProcessEngine has delegated to an
  * ExternalTask worker for processing.
  */
-export class ExternalTask<TPayloadType> implements IExternalTask {
+export class ExternalTask<TPayloadType> {
 
   public id: string;
   /**
