@@ -1,6 +1,5 @@
-import * as moment from 'moment';
-
 import {IIdentity} from '@essential-projects/iam_contracts';
+import * as moment from 'moment';
 
 import {ExternalTaskState} from './external_task_state';
 
