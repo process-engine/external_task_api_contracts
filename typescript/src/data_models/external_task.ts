@@ -1,13 +1,13 @@
+import {IIdentity} from '@essential-projects/iam_contracts';
 import * as moment from 'moment';
 
 import {ExternalTaskState} from './external_task_state';
-import {IExternalTask} from './iexternal_task';
 
 /**
  * Describes an ExternalTask that the ProcessEngine has delegated to an
  * ExternalTask worker for processing.
  */
-export class ExternalTask<TPayloadType> implements IExternalTask {
+export class ExternalTask<TPayloadType> {
 
   public id: string;
   /**
@@ -19,6 +19,7 @@ export class ExternalTask<TPayloadType> implements IExternalTask {
   public flowNodeInstanceId: string;
   public correlationId: string;
   public processInstanceId: string;
+  public identity: IIdentity;
   /**
    * The payload containing all relevant data the worker needs to execute the
    * ExternalTask.
