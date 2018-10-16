@@ -1,3 +1,5 @@
+import {IIdentity} from '@essential-projects/iam_contracts';
+
 import {ExternalTaskState} from './external_task_state';
 
 export interface IExternalTask {
@@ -9,6 +11,7 @@ export interface IExternalTask {
   processInstanceId: string;
   lockExpirationTime?: Date;
   readonly isLocked?: boolean;
+  identity: IIdentity;
   payload: any;
   state: ExternalTaskState;
   finishedAt?: Date;

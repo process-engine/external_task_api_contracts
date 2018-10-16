@@ -1,3 +1,5 @@
+import {IIdentity} from '@essential-projects/iam_contracts';
+
 import {ExternalTaskFromRepository} from './data_models/external_task_from_repository';
 
 /**
@@ -18,14 +20,16 @@ export interface IExternalTaskRepository {
    *                           FlowNodeInstance with the ExternalTasks definition.
    * @param flowNodeInstanceId The ID of the FlowNodeInstance that contains the
    *                           ExternalTasks definition.
+   * @param identity           The Identity of the lane where ExternalTask is in.
    * @param payload            Contains data that the ExternalTaskAPI will need
    *                           for processing the ExternalTask.
    */
   create<TPayloadType>(topic: string,
-                       correlationId: string,
-                       processInstanceId: string,
-                       flowNodeInstanceId: string,
-                       payload: TPayloadType): Promise<void>;
+    correlationId: string,
+    processInstanceId: string,
+    flowNodeInstanceId: string,
+    identity: IIdentity,
+    payload: TPayloadType): Promise<void>;
 
   /**
    * Gets an ExternalTask by its ID.
