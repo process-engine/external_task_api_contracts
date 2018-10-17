@@ -18,10 +18,10 @@ export interface IExternalTaskWorker {
    * @param longpollingTimeout Longpolling Timeout in ms.
    * @param handleAction       Action to handle ExternalTask.
    */
-  waitForAndHandle<TPayload>(
+  waitForAndHandle<TPayload, TResult>(
     identity: IIdentity,
     topic: string,
     maxTasks: number,
     longpollingTimeout: number,
-    handleAction: (externalTask: ExternalTask<TPayload>) => Promise<void>): Promise<void>;
+    handleAction: (externalTask: ExternalTask<TPayload>) => Promise<TResult>): Promise<void>;
 }
