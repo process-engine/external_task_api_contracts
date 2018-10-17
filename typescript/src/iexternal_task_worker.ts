@@ -1,4 +1,5 @@
-import {IExternalTaskApi} from '.';
+import {IIdentity} from '@essential-projects/iam_contracts';
+
 import {ExternalTask} from './data_models/external_task';
 
 /**
@@ -11,10 +12,16 @@ export interface IExternalTaskWorker {
    * Wait for ExternalTasks on topic and handles them.
    *
    * @async
+   * @param identity           IIdentity to fetch Tasks for.
    * @param topic              The ExternalTasks topic.
-   * @param handleAction       Action to handle ExternalTask
+   * @param maxTasks           max. ExternalTasks to fetch.
+   * @param longpollingTimeout Longpolling Timeout in ms.
+   * @param handleAction       Action to handle ExternalTask.
    */
   waitForAndHandle<TPayload>(
+    identity: IIdentity,
     topic: string,
+    maxTasks: number,
+    longpollingTimeout: number,
     handleAction: (externalTask: ExternalTask<TPayload>) => Promise<void>): Promise<void>;
 }
