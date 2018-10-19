@@ -8,7 +8,7 @@ import {IExternalTaskApi} from '.';
 export interface IHandleExternalTaskResult {
 
   /**
-   * Wait for ExternalTasks on topic and handles them.
+   * Apply result to ExternalTaskApi
    *
    * @async
    * @param externalTaskApi    Service for handling external Task.
