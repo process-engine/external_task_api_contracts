@@ -1,10 +1,10 @@
-
 import {IIdentity} from '@essential-projects/iam_contracts';
-import {
-  IHandleExternalTaskResult,
-  IExternalTaskApi
-} from '.';
 
+import {IExternalTaskApi, IHandleExternalTaskResult} from '.';
+
+/**
+ * Result of handling ExternalTasks
+ */
 export class ExternalTaskFinished<TResult> implements IHandleExternalTaskResult {
   private readonly _externalTaskId: string;
   private readonly _result: TResult;
@@ -17,6 +17,6 @@ export class ExternalTaskFinished<TResult> implements IHandleExternalTaskResult 
   }
 
   public async applyTo(externalTaskApi: IExternalTaskApi, identity: IIdentity, workerId: string): Promise<void> {
-    await externalTaskApi.finishExternalTask(identity, workerId, this._externalTaskId, this._result);
+    await externalTaskApi.finishExternalTask<TResult>(identity, workerId, this._externalTaskId, this._result);
   }
 }

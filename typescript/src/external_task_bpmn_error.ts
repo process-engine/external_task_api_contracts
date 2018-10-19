@@ -1,10 +1,10 @@
-
 import {IIdentity} from '@essential-projects/iam_contracts';
-import {
-  IHandleExternalTaskResult,
-  IExternalTaskApi
-} from '.';
 
+import {IExternalTaskApi, IHandleExternalTaskResult} from '.';
+
+/**
+ * Result with Bpmn error of handling ExternalTasks
+ */
 export class ExternalTaskBpmnError implements IHandleExternalTaskResult {
   private readonly _externalTaskId: string;
   private readonly _errorCode: string;
