@@ -2,11 +2,13 @@ import {IIdentity} from '@essential-projects/iam_contracts';
 
 import {ExternalTask} from './data_models/external_task';
 
+import {IHandleExternalTaskResult} from '.';
+
 /**
  * Definition of HandleExternalTask Callback. 
  */
-export interface HandleExternalTaskAction<TPayload, TResult> {
-  (externalTask: ExternalTask<TPayload>): Promise<TResult>
+export interface HandleExternalTaskAction<TPayload> {
+  (externalTask: ExternalTask<TPayload>): Promise<IHandleExternalTaskResult>
 }
 
 /**
@@ -30,5 +32,5 @@ export interface IExternalTaskWorker {
     topic: string,
     maxTasks: number,
     longpollingTimeout: number,
-    handleAction: HandleExternalTaskAction<TPayload, TResult>): Promise<void>;
+    handleAction: HandleExternalTaskAction<TPayload>): Promise<void>;
 }
