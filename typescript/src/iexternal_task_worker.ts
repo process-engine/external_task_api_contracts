@@ -18,6 +18,11 @@ export interface HandleExternalTaskAction<TPayload> {
 export interface IExternalTaskWorker {
 
   /**
+   * Id of worker
+   */
+  WorkerId: string;
+
+  /**
    * Wait for ExternalTasks on topic and handles them.
    *
    * @async
