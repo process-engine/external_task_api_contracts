@@ -3,17 +3,17 @@ import {IIdentity} from '@essential-projects/iam_contracts';
 import {IExternalTaskApi} from '.';
 
 /**
- * Result of handling ExternalTasks
+ * Contains the execution result for an ExternalTask.
  */
 export interface IExternalTaskResult {
 
   /**
-   * Process result with ExternalTaskApi
+   * Sends the ExternalTasks result to the ExternalTaskAPI, using the given 'IExternalTaskAPI' instance.
    *
    * @async
-   * @param externalTaskApi    Service for handling external Task.
-   * @param identity           IIdentity to fetch Tasks for.
-   * @param workerId           Id of the Worker with handled this tasks.
+   * @param externalTaskApi    The ExternalTaskAPI instance that should process the ExternalTasks result.
+   * @param identity           The identity to use for sending the ExternalTasks result.
+   * @param workerId           Id of the Worker wich handled this tasks.
    */
   sendToExternalTaskApi(externalTaskApi: IExternalTaskApi, identity: IIdentity, workerId: string): Promise<void>;
 }

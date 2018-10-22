@@ -5,15 +5,14 @@ import {ExternalTask} from './data_models/external_task';
 import {IExternalTaskResult} from '.';
 
 /**
- * Definition of HandleExternalTask Callback. 
+ * Definition of the HandleExternalTask Callback. 
  */
 export interface HandleExternalTaskAction<TPayload> {
   (externalTask: ExternalTask<TPayload>): Promise<IExternalTaskResult>
 }
 
 /**
- * This worker fetches ExternalTasks and handle them with given 
- * Callback. 
+ * Periodically fetches, locks and processes ExternalTasks for a given topic.
  */
 export interface IExternalTaskWorker {
 
@@ -23,14 +22,15 @@ export interface IExternalTaskWorker {
   workerId: string;
 
   /**
-   * Wait for ExternalTasks on topic and handles them.
+   * Periodically fetches, locks and processes available ExternalTasks with a given topic,
+   * using the given callback as a processing function.
    *
    * @async
-   * @param identity           IIdentity to fetch Tasks for.
-   * @param topic              The ExternalTasks topic.
+   * @param identity           The identity to use for fetching and processing ExternalTasks.
+   * @param topic              The topic by which to look for and process ExternalTasks.
    * @param maxTasks           max. ExternalTasks to fetch.
    * @param longpollingTimeout Longpolling Timeout in ms.
-   * @param handleAction       Action to handle ExternalTask.
+   * @param handleAction       The function for processing the ExternalTasks.
    */
   waitForAndHandle<TPayload, TResult>(
     identity: IIdentity,
