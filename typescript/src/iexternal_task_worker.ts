@@ -32,7 +32,7 @@ export interface IExternalTaskWorker {
    * @param longpollingTimeout Longpolling Timeout in ms.
    * @param handleAction       The function for processing the ExternalTasks.
    */
-  waitForAndHandle<TPayload, TResult>(
+  waitForAndHandle<TPayload>(
     identity: IIdentity,
     topic: string,
     maxTasks: number,
