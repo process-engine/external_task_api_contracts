@@ -8,5 +8,5 @@ export * from './iexternal_task_api';
 export * from './iexternal_task_api_accessor';
 export * from './iexternal_task_repository';
 export * from './iexternal_task_worker';
-export * from './ihandle_external_task_result';
+export * from './iexternal_task_result';
 export * from './rest_settings';
