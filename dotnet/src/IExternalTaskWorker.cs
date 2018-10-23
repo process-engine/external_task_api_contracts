@@ -9,7 +9,7 @@ namespace ProcessEngine.ExternalTaskAPI.Contracts
     /// <summary>
     /// Definition of the HandleExternalTask Callback.
     /// </summary>
-    public delegate IExternalTaskResult HandleExternalTaskAction<TPayload>(ExternalTask<TPayload> externalTask);
+    public delegate Task<IExternalTaskResult> HandleExternalTaskAction<TPayload>(ExternalTask<TPayload> externalTask);
 
     /// <summary>
     /// Periodically fetches, locks and processes ExternalTasks for a given topic.
@@ -46,6 +46,6 @@ namespace ProcessEngine.ExternalTaskAPI.Contracts
             int maxTasks,
             int longpollingTimeout,
             HandleExternalTaskAction<TPayload> handleAction
-          );
+          ) where TPayload : new();
     }
 }
