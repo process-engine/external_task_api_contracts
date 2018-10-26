@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>4.1.0-ci-test-1</Version>
+        <Version>4.1.0</Version>
         <RootNamespace>ProcessEngine.ExternalTaskAPI.Contracts</RootNamespace>
         <AssemblyName>ProcessEngine.ExternalTaskAPI.Contracts</AssemblyName>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
