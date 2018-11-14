@@ -92,4 +92,13 @@ export interface IExternalTaskRepository {
    * @throws                404, if the ExternalTask was not found.
    */
   finishWithSuccess<TResultType>(externalTaskId: string, result: TResultType): Promise<any>;
+
+  /**
+   * Removes the External Tasks with a specific processModelId
+   *
+   * @async
+   * @param  externalTaskId The ID of the processModel, by which the externalTasks should be removed.
+   *
+   */
+  deleteExternalTasksByProcessModelId(processModelId: string): Promise<void>;
 }
