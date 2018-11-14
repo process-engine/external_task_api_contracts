@@ -26,6 +26,7 @@ export interface IExternalTaskRepository {
    */
   create<TPayloadType>(topic: string,
     correlationId: string,
+    processModelId: string,
     processInstanceId: string,
     flowNodeInstanceId: string,
     identity: IIdentity,

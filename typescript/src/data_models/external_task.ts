@@ -18,6 +18,7 @@ export class ExternalTask<TPayloadType> {
   public topic: string;
   public flowNodeInstanceId: string;
   public correlationId: string;
+  public processModelId: string;
   public processInstanceId: string;
   public identity: IIdentity;
   /**
