@@ -16,6 +16,8 @@ export interface IExternalTaskRepository {
    * @param topic              The ExternalTasks topic.
    * @param correlationId      The ID of the Correlation that contains the
    *                           FlowNodeInstance with the ExternalTasks definition.
+   * @param processModelId     The ID of the ProcessModel that contains the
+   *                           FlowNode with the ExternalTasks definition.
    * @param processInstanceId  The ID of the ProcessInstance that contains the
    *                           FlowNodeInstance with the ExternalTasks definition.
    * @param flowNodeInstanceId The ID of the FlowNodeInstance that contains the
@@ -24,13 +26,14 @@ export interface IExternalTaskRepository {
    * @param payload            Contains data that the ExternalTaskAPI will need
    *                           for processing the ExternalTask.
    */
-  create<TPayloadType>(topic: string,
-    correlationId: string,
-    processModelId: string,
-    processInstanceId: string,
-    flowNodeInstanceId: string,
-    identity: IIdentity,
-    payload: TPayloadType): Promise<void>;
+  create<TPayload>(topic: string,
+                   correlationId: string,
+                   processModelId: string,
+                   processInstanceId: string,
+                   flowNodeInstanceId: string,
+                   identity: IIdentity,
+                   payload: TPayload,
+                 ): Promise<void>;
 
   /**
    * Gets an ExternalTask by its ID.
@@ -40,7 +43,23 @@ export interface IExternalTaskRepository {
    * @returns                The retrieved ExternalTask.
    * @throws                 404, if the ExternalTask was not found.
    */
-  getById<TPayloadType>(externalTaskId: string): Promise<ExternalTask<TPayloadType>>;
+  getById<TPayload>(externalTaskId: string): Promise<ExternalTask<TPayload>>;
+
+  /**
+   * Gets an ExternalTask by its associated instance IDs.
+   * These include the correlationId, processInstanceId and flowNodeInstanceId.
+   *
+   * @async
+   * @param correlationId      The ID of the Correlation by which to get the
+   *                           ExternalTask.
+   * @param processInstanceId  The ID of the ProcessInstance by which to get
+   *                           the ExternalTask.
+   * @param flowNodeInstanceId The ID of the FlowNodeInstance by which to get
+   *                           the ExternalTask.
+   * @returns                  The retrieved ExternalTask.
+   * @throws                   404, if the ExternalTask was not found.
+   */
+  getByInstanceIds<TPayload>(correlationId: string, processInstanceId: string, flowNodeInstanceId: string): Promise<ExternalTask<TPayload>>;
 
   /**
    *
@@ -53,7 +72,7 @@ export interface IExternalTaskRepository {
    * @param   maxTasks  The maximum number of tasks to return.
    * @returns           A list of fetched and locked ExternalTasks.
    */
-  fetchAvailableForProcessing<TPayloadType>(topicName: string, maxTasks: number): Promise<Array<ExternalTask<TPayloadType>>>;
+  fetchAvailableForProcessing<TPayload>(topicName: string, maxTasks: number): Promise<Array<ExternalTask<TPayload>>>;
 
   /**
    *
