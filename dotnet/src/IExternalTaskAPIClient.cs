@@ -4,8 +4,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Foundation.IAM.Contracts;
-
     /// <summary>
     /// Client for accessing the <see cref="IExternalTaskAPI">ExternalTaskAPI</see>.
     /// </summary>

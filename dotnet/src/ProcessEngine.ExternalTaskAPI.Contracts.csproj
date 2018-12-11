@@ -18,8 +18,4 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Foundation.IAM.Contracts" Version="1.2.0" />
-    </ItemGroup>
-
 </Project>

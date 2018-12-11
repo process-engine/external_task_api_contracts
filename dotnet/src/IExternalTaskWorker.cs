@@ -3,9 +3,6 @@ namespace ProcessEngine.ExternalTaskAPI.Contracts
     using System;
     using System.Threading.Tasks;
 
-    using Foundation.IAM.Contracts;
-
-
     /// <summary>
     /// Definition of the HandleExternalTask Callback.
     /// </summary>
