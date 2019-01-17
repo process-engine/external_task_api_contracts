@@ -1,6 +1,6 @@
 {
   "name": "@process-engine/external_task_api_contracts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Interfaces for the process-engine.io External Task API",
   "main": "dist/commonjs/index.js",
   "typings": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/process-engine/external_task_api_contracts#readme",
   "dependencies": {
-    "@essential-projects/iam_contracts": "~3.3.0",
+    "@essential-projects/iam_contracts": "~3.4.0",
     "moment": "2.22.2"
   },
   "devDependencies": {
