@@ -54,7 +54,7 @@
     /// <summary>
     /// The Identity of ProcessInstance.
     /// </summary>
-    public IIdentity Identity;
+    public Identity Identity;
 
     /// <summary>
     /// The payload containing all relevant data the worker needs to execute
