@@ -1,6 +1,6 @@
 {
   "name": "@process-engine/external_task_api_contracts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Interfaces for the process-engine.io External Task API",
   "main": "dist/commonjs/index.js",
   "typings": "dist/index.d.ts",
