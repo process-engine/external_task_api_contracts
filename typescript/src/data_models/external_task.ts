@@ -52,4 +52,5 @@ export class ExternalTask<TPayloadType> {
 
     return lockExpirationAsMoment.isAfter(now);
   }
+
 }

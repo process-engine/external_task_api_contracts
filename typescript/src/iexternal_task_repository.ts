@@ -27,13 +27,13 @@ export interface IExternalTaskRepository {
    *                           for processing the ExternalTask.
    */
   create<TPayload>(topic: string,
-                   correlationId: string,
-                   processModelId: string,
-                   processInstanceId: string,
-                   flowNodeInstanceId: string,
-                   identity: IIdentity,
-                   payload: TPayload,
-                 ): Promise<void>;
+    correlationId: string,
+    processModelId: string,
+    processInstanceId: string,
+    flowNodeInstanceId: string,
+    identity: IIdentity,
+    payload: TPayload,
+  ): Promise<void>;
 
   /**
    * Gets an ExternalTask by its ID.
@@ -111,7 +111,7 @@ export interface IExternalTaskRepository {
    * @param  result         The result of the ExternalTasks execution.
    * @throws                404, if the ExternalTask was not found.
    */
-  finishWithSuccess<TResultType>(externalTaskId: string, result: TResultType): Promise<any>;
+  finishWithSuccess<TResultType>(externalTaskId: string, result: TResultType): Promise<void>;
 
   /**
    * Removes the External Tasks with a specific processModelId

@@ -7,4 +7,5 @@ import {IExternalTaskApi} from './iexternal_task_api';
  * perform the same type of requests, regardless of which type of ProcessEngine
  * is used.
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IExternalTaskApiAccessor extends IExternalTaskApi {}
