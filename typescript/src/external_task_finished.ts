@@ -6,12 +6,13 @@ import {IExternalTaskApi, IExternalTaskResult} from '.';
  * Contains the result set for a successfully executed ExternalTask.
  */
 export class ExternalTaskFinished<TResult> implements IExternalTaskResult {
-  private readonly _externalTaskId: string;
-  private readonly _result: TResult;
+
+  private readonly externalTaskId: string;
+  private readonly result: TResult;
 
   constructor(externalTaskId: string, result: TResult) {
-    this._externalTaskId = externalTaskId;
-    this._result = result;
+    this.externalTaskId = externalTaskId;
+    this.result = result;
   }
 
   /**
@@ -23,6 +24,7 @@ export class ExternalTaskFinished<TResult> implements IExternalTaskResult {
    * @param workerId           Id of the Worker wich handled this tasks.
    */
   public async sendToExternalTaskApi(externalTaskApi: IExternalTaskApi, identity: IIdentity, workerId: string): Promise<void> {
-    await externalTaskApi.finishExternalTask<TResult>(identity, workerId, this._externalTaskId, this._result);
+    await externalTaskApi.finishExternalTask<TResult>(identity, workerId, this.externalTaskId, this.result);
   }
+
 }
