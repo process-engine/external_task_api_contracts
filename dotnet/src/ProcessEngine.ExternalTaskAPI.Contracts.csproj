@@ -18,4 +18,8 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="EssentialProjects.IAM.Contracts" Version="0.1.3" />
+    </ItemGroup>
+
 </Project>
