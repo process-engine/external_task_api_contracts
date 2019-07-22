@@ -1,6 +1,6 @@
 namespace ProcessEngine.ExternalTaskAPI.Contracts
 {
-    internal class HandleServiceErrorRequest
+    public class HandleServiceErrorRequest
     {
         public HandleServiceErrorRequest(string workerId, string errorMessage, string errorDetails)
         {

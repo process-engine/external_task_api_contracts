@@ -1,6 +1,6 @@
 namespace ProcessEngine.ExternalTaskAPI.Contracts
 {
-    internal class FetchAndLockRequest
+    public class FetchAndLockRequest
     {
         public FetchAndLockRequest(string workerId, string topicName, int maxTasks, int longPollingTimeout, int lockDuration)
         {

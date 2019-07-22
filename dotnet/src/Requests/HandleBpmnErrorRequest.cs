@@ -1,6 +1,6 @@
 namespace ProcessEngine.ExternalTaskAPI.Contracts
 {
-    internal class HandleBpmnErrorRequest
+    public class HandleBpmnErrorRequest
     {
         public HandleBpmnErrorRequest(string workerId, string errorCode)
         {

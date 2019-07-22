@@ -1,6 +1,6 @@
 namespace ProcessEngine.ExternalTaskAPI.Contracts
 {
-    internal class FinishExternalTaskRequest<TResult>
+    public class FinishExternalTaskRequest<TResult>
     {
         public FinishExternalTaskRequest(string workerId, TResult result)
         {

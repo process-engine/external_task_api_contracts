@@ -1,6 +1,6 @@
 namespace ProcessEngine.ExternalTaskAPI.Contracts
 {
-    internal class ExtendLockRequest
+    public class ExtendLockRequest
     {
         public ExtendLockRequest(string workerId, int additionalDuration)
         {
