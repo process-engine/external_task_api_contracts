@@ -4,6 +4,8 @@ namespace ProcessEngine.ExternalTaskAPI.Contracts
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using EssentialProjects.IAM.Contracts;
+
     /// <summary>
     /// The repository used to store and retrieve ExternalTasks.
     /// </summary>

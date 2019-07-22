@@ -2,6 +2,8 @@
 {
   using System;
 
+  using EssentialProjects.IAM.Contracts;
+
   /// <summary>
   /// Describes an ExternalTask that the ProcessEngine has delegated to an
   /// ExternalTask worker for processing.
