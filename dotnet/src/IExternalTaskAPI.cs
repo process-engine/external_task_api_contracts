@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using EssentialProjects.IAM.Contracts;
+
     /// <summary>
     /// Service for process engine external task execution. External tasks are tasks in a process flow that are executed by an external service.
     /// In order to execute them the service has to poll the tasks/jobs and report the result back to the process engine (process variables or errors).
