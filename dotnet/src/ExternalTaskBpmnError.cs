@@ -3,6 +3,8 @@ namespace ProcessEngine.ExternalTaskAPI.Contracts
     using System;
     using System.Threading.Tasks;
 
+    using EssentialProjects.IAM.Contracts;
+
     /// <summary>
     /// Contains the result set for a successfully executed ExternalTask.
     /// </summary>
